@@ -25,6 +25,8 @@ final class WeekForecastDataSource: NSObject {
         return forecastByWeek
     }
     
+    // MARK: - Init
+    
     init(tableView: UITableView, viewModel: WeekForecastViewModelProtocol) {
         self.tableView = tableView
         self.viewModel = viewModel
@@ -32,16 +34,11 @@ final class WeekForecastDataSource: NSObject {
         setUpDelegates()
     }
     
+    // MARK: - Private methods
+    
     private func setUpDelegates() {
         tableView.dataSource = self
         tableView.delegate = self
-    }
-    
-    func loadForecast() {
-        viewModel?.getWeekForecast(completion: { data in
-            self.weekForecast = data
-        })
-        self.tableView.reloadData()
     }
     
     private func displayWeekDay(ofSection section: Int) -> String? {
@@ -50,8 +47,18 @@ final class WeekForecastDataSource: NSObject {
         
         return date.dayOfTheWeek()
     }
+    
+    // MARK: - Public methods
+    
+    func loadForecast() {
+        viewModel?.getWeekForecast(completion: { data in
+            self.weekForecast = data
+        })
+        self.tableView.reloadData()
+    }
 }
 
+// MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension WeekForecastDataSource: UITableViewDelegate, UITableViewDataSource {
     
