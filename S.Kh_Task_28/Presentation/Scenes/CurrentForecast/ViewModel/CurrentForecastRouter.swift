@@ -11,8 +11,7 @@ protocol CurrentForecastRoutingLogic {
     func routeToWeekForecast(withLat lat: Double, lon: Double)
 }
 
-
-class CurrentForecastRouter: CurrentForecastRoutingLogic {
+final class CurrentForecastRouter: CurrentForecastRoutingLogic {
     var viewController: CurrentForecastViewController?
     
     func routeToWeekForecast(withLat lat: Double, lon: Double) {
@@ -23,5 +22,4 @@ class CurrentForecastRouter: CurrentForecastRoutingLogic {
             viewController?.navigationController?.pushViewController(destinationVC, animated: true)
         }
     }
-    
 }

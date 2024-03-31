@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ForecastUrlBuilder: DataUrl {
+final class ForecastUrlBuilder: DataUrl {
     
     private(set) var urlString: String
     
@@ -34,5 +34,4 @@ class ForecastUrlBuilder: DataUrl {
         withApiKey()
         withUnit()
     }
-    
 }

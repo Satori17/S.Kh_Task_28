@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DateTransformer {
+final class DateTransformer {
     
     static func transformDate(currentDate: String) -> Date {
         let dateFormatter = DateFormatter()

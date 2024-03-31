@@ -13,9 +13,9 @@ protocol WeekForecastManagerProtocol: AnyObject {
     init(withLat lat: Double, lon: Double)
 }
 
-class WeekForecastManager: WeekForecastManagerProtocol {
-    let lat: Double
-    let lon: Double
+final class WeekForecastManager: WeekForecastManagerProtocol {
+    private let lat: Double
+    private let lon: Double
     
     required init(withLat lat: Double, lon: Double) {
         self.lat = lat
@@ -34,5 +34,4 @@ class WeekForecastManager: WeekForecastManagerProtocol {
             }
         }
     }
-
 }

@@ -7,11 +7,10 @@
 
 import UIKit
 
-class CurrentForecastViewController: UIViewController {
+final class CurrentForecastViewController: UIViewController {
     
     //MARK: - IBOutlets
-    @IBOutlet weak var currentForecastView: ForecastView!
-    
+    @IBOutlet private weak var currentForecastView: ForecastView!
     
     //MARK: - Properties
     
@@ -30,7 +29,6 @@ class CurrentForecastViewController: UIViewController {
         super.viewWillAppear(animated)
         reload()
     }
-    
     
     //MARK: - Methods
     
@@ -55,5 +53,4 @@ extension CurrentForecastViewController: nextWeekForecastDelegate {
     func showNextWeekForecast() {
         viewModel.navigateToWeekForecast()
     }
-    
 }

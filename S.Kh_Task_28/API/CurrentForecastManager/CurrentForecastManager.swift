@@ -11,7 +11,7 @@ protocol CurrentForecastManagerProtocol: AnyObject {
     func fetchCurrentForecast(withLat lat: Double, lon: Double, completion: @escaping (ForecastData) -> Void)
 }
 
-class CurrentForecastManager: CurrentForecastManagerProtocol {
+final class CurrentForecastManager: CurrentForecastManagerProtocol {
     
     func fetchCurrentForecast(withLat lat: Double, lon: Double, completion: @escaping (ForecastData) -> Void) {
         let urlBuilder = ForecastUrlBuilder(latitude: lat, longitude: lon)
@@ -25,5 +25,4 @@ class CurrentForecastManager: CurrentForecastManagerProtocol {
             }
         }
     }
-
 }

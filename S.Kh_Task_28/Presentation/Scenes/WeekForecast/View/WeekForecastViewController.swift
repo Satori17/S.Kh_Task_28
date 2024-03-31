@@ -7,26 +7,25 @@
 
 import UIKit
 
-
-class WeekForecastViewController: UIViewController {
+final class WeekForecastViewController: UIViewController {
 
     //MARK: - IBOutlets
     
-    @IBOutlet weak var forecastTableView: UITableView!
+    @IBOutlet private weak var forecastTableView: UITableView!
     
     //MARK: - Properties
     
     static var identifier: String { .init(describing: self) }
-    var viewModel: WeekForecastViewModelProtocol!
-    var dataSource: WeekForecastDataSource!
+    var viewModel: WeekForecastViewModelProtocol?
+    var dataSource: WeekForecastDataSource?
     
     //MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         forecastTableView.registerNib(class: ForecastCell.self)
-        setupViewModel()
-        dataSource.loadForecast()
+        setupDataSource()
+        dataSource?.loadForecast()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -36,8 +35,8 @@ class WeekForecastViewController: UIViewController {
     
     //MARK: - Methods
     
-    private func setupViewModel() {        
+    private func setupDataSource() {
+        guard let viewModel else { return }
         dataSource = WeekForecastDataSource(tableView: forecastTableView, viewModel: viewModel)
     }
-
 }

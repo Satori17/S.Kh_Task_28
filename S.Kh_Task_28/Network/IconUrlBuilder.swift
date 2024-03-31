@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IconUrlBuilder: DataUrl {
+final class IconUrlBuilder: DataUrl {
     
     var urlString: String
     
@@ -23,12 +23,10 @@ class IconUrlBuilder: DataUrl {
         self.urlString += ".png"
     }
     
-    
     init(withId id: String) {
         self.urlString = ""
         withBaseUrl()
         withIcon(id: id)
         withExtension()
     }
-    
 }

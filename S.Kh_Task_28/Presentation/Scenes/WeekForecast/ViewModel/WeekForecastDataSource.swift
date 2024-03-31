@@ -7,14 +7,14 @@
 
 import UIKit
 
-class WeekForecastDataSource: NSObject {
+final class WeekForecastDataSource: NSObject {
     
     //MARK: - Properties
     
     private var tableView: UITableView
     private var viewModel: WeekForecastViewModelProtocol?
-    var weekForecast: [ForecastModel] = []
-    var filteredWeekForecasts: [[ForecastModel]] {
+    private var weekForecast: [ForecastModel] = []
+    private var filteredWeekForecasts: [[ForecastModel]] {
         let forecastByWeek: [[ForecastModel]] = weekForecast.reduce(into: []) {
             if $0.last?.last?.date == $1.date {
                 $0[$0.index(before: $0.endIndex)].append($1)
@@ -33,8 +33,8 @@ class WeekForecastDataSource: NSObject {
     }
     
     private func setUpDelegates() {
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     func loadForecast() {
@@ -82,10 +82,9 @@ extension WeekForecastDataSource: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = HeaderView()
         if let weekDay = displayWeekDay(ofSection: section) {
-            view.weekDaysLabel.text = weekDay
+            view.setupWeekDaysLabel(weekDay)
         }
         
         return view
     }
-    
 }

@@ -7,12 +7,12 @@
 
 import UIKit
 
-class HeaderView: UIView {
+final class HeaderView: UIView {
 
    //MARK: - IBOutlets
     
-    @IBOutlet var contentView: UIView!
-    @IBOutlet weak var weekDaysLabel: UILabel!
+    @IBOutlet private var contentView: UIView!
+    @IBOutlet private weak var weekDaysLabel: UILabel!
  
     //MARK: - Object Lifecycle
     
@@ -34,5 +34,9 @@ class HeaderView: UIView {
         contentView.frame = bounds
         contentView.clipsToBounds = true
         addSubview(contentView)
+    }
+    
+    func setupWeekDaysLabel(_ text: String) {
+        weekDaysLabel.text = text
     }
 }

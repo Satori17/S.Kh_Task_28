@@ -7,13 +7,13 @@
 
 import UIKit
 
-class ForecastCell: UITableViewCell {
+final class ForecastCell: UITableViewCell {
 
     //MARK: - IBOutlets
     
-    @IBOutlet weak var forecastIconImageView: UIImageView!
-    @IBOutlet weak var forecastTimeLabel: UILabel!
-    @IBOutlet weak var forecastConditionLabel: UILabel!
+    @IBOutlet private weak var forecastIconImageView: UIImageView!
+    @IBOutlet private weak var forecastTimeLabel: UILabel!
+    @IBOutlet private weak var forecastConditionLabel: UILabel!
     
     //MARK: - Cell Lifecycle
     

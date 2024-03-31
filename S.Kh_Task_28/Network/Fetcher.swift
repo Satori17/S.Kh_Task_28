@@ -8,7 +8,6 @@
 import Foundation
 
 enum FetchingError: String, Error {
-    
     case requestError = "Could not fetch data with request"
     case responseError = "Wrong Response"
     case statusCodeError = "Unsucessful response status code"
@@ -17,11 +16,10 @@ enum FetchingError: String, Error {
 }
 
 
-class Fetcher {
+final class Fetcher {
     
     static let shared = Fetcher()
     let session = URLSession(configuration: .default)
-    
     
     func fetchData<T: Decodable>(withBuilder urlBuilder: String, as model: T.Type, onCompletion: @escaping (Result<T, FetchingError>) -> Void) {        
         let request = URL(string: urlBuilder)
@@ -61,5 +59,4 @@ class Fetcher {
         //API call
         task.resume()
     }
-
 }

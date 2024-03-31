@@ -8,15 +8,15 @@
 import UIKit
 import CoreLocation
 
-class CurrentForecastDataSource: NSObject {
+final class CurrentForecastDataSource: NSObject {
     
     //MARK: - Properties
     
     private var viewModel: CurrentForecastViewModelProtocol?
-    let locationManager = CLLocationManager()
-    var currentLocation: CLLocation!
-    var forecastHandler: ((ForecastModel) -> Void)?
+    private let locationManager = CLLocationManager()
+    private var currentLocation: CLLocation!
     
+    var forecastHandler: ((ForecastModel) -> Void)?
     
     init(viewModel: CurrentForecastViewModelProtocol) {
         self.viewModel = viewModel
@@ -25,7 +25,6 @@ class CurrentForecastDataSource: NSObject {
         checkCurrentPermission()
     }
 }
-
 
 extension CurrentForecastDataSource: CLLocationManagerDelegate {
     
@@ -75,5 +74,4 @@ extension CurrentForecastDataSource: CLLocationManagerDelegate {
             })
         }
     }
-    
 }

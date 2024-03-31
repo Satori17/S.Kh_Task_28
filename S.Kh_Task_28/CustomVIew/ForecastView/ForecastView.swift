@@ -11,24 +11,24 @@ protocol nextWeekForecastDelegate: AnyObject {
     func showNextWeekForecast()
 }
 
-class ForecastView: UIView {
+final class ForecastView: UIView {
     
     //MARK: - IBOutlets
-    @IBOutlet var contentView: UIView!
-    @IBOutlet weak var IconImageView: UIImageView!
-    @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var humidityLabel: UILabel!
-    @IBOutlet weak var windSpeedLabel: UILabel!
-    @IBOutlet weak var chanceOfRainLabel: UILabel!
-    @IBOutlet weak var windDirectionLabel: UILabel!
-    @IBOutlet weak var pressureLabel: UILabel!
-    @IBOutlet weak var nextWeekForecastBtn: UIButton!
+    @IBOutlet private var contentView: UIView!
+    @IBOutlet private weak var IconImageView: UIImageView!
+    @IBOutlet private weak var temperatureLabel: UILabel!
+    @IBOutlet private weak var humidityLabel: UILabel!
+    @IBOutlet private weak var windSpeedLabel: UILabel!
+    @IBOutlet private weak var chanceOfRainLabel: UILabel!
+    @IBOutlet private weak var windDirectionLabel: UILabel!
+    @IBOutlet private weak var pressureLabel: UILabel!
+    @IBOutlet private weak var nextWeekForecastBtn: UIButton!
     //background views
-    @IBOutlet weak var humidityView: UIView!
-    @IBOutlet weak var windView: UIView!
-    @IBOutlet weak var rainView: UIView!
-    @IBOutlet weak var compassView: UIView!
-    @IBOutlet weak var pressureView: UIView!
+    @IBOutlet private weak var humidityView: UIView!
+    @IBOutlet private weak var windView: UIView!
+    @IBOutlet private weak var rainView: UIView!
+    @IBOutlet private weak var compassView: UIView!
+    @IBOutlet private weak var pressureView: UIView!
     
     //MARK: - Properties
     
@@ -48,10 +48,9 @@ class ForecastView: UIView {
     
     //MARK: - IBAction
     
-    @IBAction func nextWeekForecastTapped(_ sender: UIButton) {
+    @IBAction private func nextWeekForecastTapped(_ sender: UIButton) {
         delegate?.showNextWeekForecast()
     }
-    
     
     //MARK: - Methods
     

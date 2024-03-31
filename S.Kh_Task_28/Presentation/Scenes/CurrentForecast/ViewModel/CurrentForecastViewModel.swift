@@ -12,33 +12,34 @@ protocol CurrentForecastViewModelProtocol: AnyObject {
     func navigateToWeekForecast()
 }
 
-class CurrentForecastViewModel: CurrentForecastViewModelProtocol {
-    var currentForecastManager: CurrentForecastManagerProtocol?
-    var router: CurrentForecastRouter?
-    var fetchCounter = 0
+final class CurrentForecastViewModel: CurrentForecastViewModelProtocol {
+    private var currentForecastManager: CurrentForecastManagerProtocol?
+    private var fetchCounter = 0
+    private var coordinate: (latitude: Double, longitude: Double)?
     
-    var latitude: Double!
-    var longitude: Double!
+    var router: CurrentForecastRouter?
     
     func getCurrentForecast(lat: Double, lon: Double, completion: @escaping ((ForecastModel) -> Void)) {
         currentForecastManager = CurrentForecastManager()
         
-        latitude = lat
-        longitude = lon
-        currentForecastManager?.fetchCurrentForecast(withLat: lat, lon: lon, completion: { data in
+        coordinate = (lat, lon)
+        currentForecastManager?.fetchCurrentForecast(withLat: lat, lon: lon, completion: { [weak self] data in
             let currentForecastModel = ForecastModel(forecast: data)
-            self.fetchCounter += 1
+            self?.fetchCounter += 1
             /* preventing double-fetching data with counter (openweathermap does this everytime.
              checkout 'print(currentForecastModel)' method with and without counter variable) */
-            guard self.fetchCounter != 2 else { return }
+            guard self?.fetchCounter != 2 else { return }
             DispatchQueue.main.async {
                 completion(currentForecastModel)
-                //print(currentForecastModel)
             }
         })
     }
     
     func navigateToWeekForecast() {
+        guard let latitude = coordinate?.latitude,
+              let longitude = coordinate?.longitude
+        else { return }
+        
         router?.routeToWeekForecast(withLat: latitude, lon: longitude)
     }
 }

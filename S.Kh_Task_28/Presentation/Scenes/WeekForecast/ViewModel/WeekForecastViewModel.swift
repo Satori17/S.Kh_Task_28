@@ -13,10 +13,10 @@ protocol WeekForecastViewModelProtocol: AnyObject {
     init(lat: Double, lon: Double)
 }
 
-class WeekForecastViewModel: WeekForecastViewModelProtocol {
-    var weekForecastManager: WeekForecastManagerProtocol?
-    let lat: Double
-    let lon: Double
+final class WeekForecastViewModel: WeekForecastViewModelProtocol {
+    private var weekForecastManager: WeekForecastManagerProtocol?
+    private let lat: Double
+    private let lon: Double
     
     required init(lat: Double, lon: Double) {
         self.lat = lat
@@ -33,5 +33,4 @@ class WeekForecastViewModel: WeekForecastViewModelProtocol {
             }
         })
     }
-    
 }
